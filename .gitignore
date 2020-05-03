@@ -1,0 +1,34 @@
+# temp files from editors
+*~
+*.bak
+.DS_Store
+.buildpath
+.project
+.settings
+*.tmproj
+build
+.idea
+
+.cache-loader/*
+
+#.htaccess
+wp-config.php
+
+# hidden files created by Windows
+Thumbs.db
+.DS_Store
+
+# the composer package lock file and install directory
+/admin/wp-content/uploads
+
+node_modules
+public/*.ejs
+public/*.html
+public/**/*.html
+public/**/*.ejs
+public/assets/css/style.css
+public/assets/maps/style.css.map
+public/assets/js/app.js
+
+# smtp for local test
+wp-mail-smtp/

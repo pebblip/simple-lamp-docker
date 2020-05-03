@@ -1,0 +1,38 @@
+version: '3.7'
+services:
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    volumes:
+      - .:/opt/myproject:delegated
+      - ./docker/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - 80:80
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0.19
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydatabase
+    volumes:
+      - /var/lib/mysql
+      - ./docker/myconf:/etc/mysql/conf.d
+    ports:
+      - 3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    volumes:
+      - /sessions
+    ports:
+      - 9999:80
+    depends_on:
+      - mysql
